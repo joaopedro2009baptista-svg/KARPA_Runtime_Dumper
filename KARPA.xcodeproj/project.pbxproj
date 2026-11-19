@@ -74,8 +74,8 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		F00000000000000000000000 /* Debug */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; }; };
-		F00000000000000000000001 /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; }; };
+		F00000000000000000000000 /* Debug */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; }; name = Debug; };
+		F00000000000000000000001 /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; }; name = Release; };
 		F00000000000000000000002 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 13.0; }; name = Debug; };
 		F00000000000000000000003 /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 13.0; }; name = Release; };
 /* End XCBuildConfiguration section */
