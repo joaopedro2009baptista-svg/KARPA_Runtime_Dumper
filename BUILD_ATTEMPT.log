@@ -1,1 +1,7 @@
 No Xcode/xcodebuild or usable Theos iOS SDK was found. No binary was produced.
+
+GitHub Actions attempt 1: https://github.com/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/actions/runs/44615612757
+Result: cancelled before steps; runner_id=0; no build log.
+GitHub Actions attempt 2: https://github.com/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/actions/runs/44615733068
+Result: queued; no runner_id assigned after more than one minute.
+No iOS dylib was produced.
