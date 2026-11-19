@@ -31,7 +31,7 @@ The artifact contains the real `libKARPA.dylib`, `xcodebuild.log`, `binary_valid
 
 ## Repository state
 
-Final commit: [`f7ef6d6`](https://github.com/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/commit/f7ef6d62fe9b288dbde3418f394afc8f8148350f)
+Final documentation commit: [`e4a3554`](https://github.com/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/commit/e4a3554)
 
 The final artifact is available from the successful workflow run above through the GitHub Actions artifact download control. The artifact archive API URL is `https://api.github.com/repos/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/actions/artifacts/14578915972/zip` for an authenticated repository user.
 
