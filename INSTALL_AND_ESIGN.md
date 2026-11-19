@@ -12,7 +12,7 @@ Em um Mac com Xcode e o iOS SDK instalado:
 
 O script gera `build/DerivedData/Build/Products/Release-iphoneos/libKARPA.dylib`, executa `validate_ios_binary.sh` e cria `build/KARPA_iOS_arm64_artifacts.zip`.
 
-O workflow `.github/workflows/ios-build.yml` executa o mesmo processo em um runner macOS e publica a dylib, logs e ZIP em GitHub Actions Artifacts. O artifact não é um pacote assinado para distribuição.
+O workflow `.github/workflows/ios-build.yml` executa o mesmo processo em um runner macOS e publica a dylib, logs e ZIP em GitHub Actions Artifacts. A execução comprovada é [44623905776](https://github.com/joaopedro2009baptista-svg/KARPA_Runtime_Dumper/actions/runs/44623905776), com artifact `KARPA-iOS-arm64-f7ef6d62fe9b288dbde3418f394afc8f8148350f`. O artifact não é um pacote assinado para distribuição.
 
 ## Assinatura e teste
 
@@ -30,4 +30,4 @@ Para um teste autorizado, o fluxo geral é:
 
 A compatibilidade com ESign **não está verificada**. Este repositório não implementa bypass de assinatura, injeção em aplicativos de terceiros, jailbreak, carregamento oculto, acesso a credenciais/conversas ou rede. O sucesso em ESign depende do dispositivo, versão do iOS, assinatura lateral autorizada, entitlements, modo de carregamento e política vigente do ambiente. Não há garantia de que uma dylib assinada por esse fluxo carregará em um app não pertencente ao testador.
 
-Até existir um build e teste real em dispositivo autorizado, os estados devem permanecer `COMPILED` apenas após o workflow produzir o Mach-O, `UNIT TESTED` somente após testes executados e `DEVICE TESTED` somente após evidência de execução no dispositivo.
+O estado `COMPILED` está comprovado pelo workflow e pelo `binary_validation.log`. `UNIT TESTED` somente deve ser marcado após testes executados e `DEVICE TESTED` somente após evidência de execução no dispositivo.

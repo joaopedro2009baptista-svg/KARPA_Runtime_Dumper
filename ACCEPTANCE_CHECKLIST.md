@@ -2,7 +2,7 @@
 
 ## Conclusão executiva
 
-A entrega atual **não satisfaz integralmente** a especificação mestre e não deve ser descrita como uma ferramenta production-quality completa. Ela agora contém coleta Objective-C, snapshot Mach-O defensivo, monitor básico de imagens/classes, diff básico, CSV, dependency report de imagens, diagnóstico e exportação adicional. Ainda não contém a DYLIB compilada, projeto Xcode completo, análise ARM64, Swift inspector, dependency graph completo, UI ou todos os formatos pedidos.
+A entrega atual **não satisfaz integralmente** a especificação mestre e não deve ser descrita como uma ferramenta production-quality completa. Ela contém coleta Objective-C, snapshot Mach-O defensivo, monitor básico de imagens/classes, diff básico, CSV, dependency report de imagens, diagnóstico, UI e exportação adicional. A DYLIB arm64 foi compilada e validada no GitHub Actions; testes XCTest, de dispositivo e ESign continuam pendentes.
 
 `PASS` significa que existe implementação correspondente no source. `PARTIAL` significa que existe apenas uma parte segura ou simplificada. `NOT IMPLEMENTED` significa que não existe módulo funcional correspondente.
 
@@ -11,11 +11,11 @@ A entrega atual **não satisfaz integralmente** a especificação mestre e não 
 | Área | Status | Evidência / lacuna |
 |---|---|---|
 | Biblioteca independente sem Watusi/rede/telemetria | PASS | Source não importa Watusi, não usa rede e coleta somente mediante API explícita. |
-| Target iOS/ARM64/ARM64e | PARTIAL | `.xcconfig` declara slices, mas não houve compilação ou validação no Xcode. |
+| Target iOS/ARM64/ARM64e | PASS/PARTIAL | `libKARPA.dylib` arm64 foi compilada e validada; arm64e depende do SDK/Xcode e não foi produzido. |
 | iOS mínimo | PARTIAL | Declarado como iOS 13.0 no `.xcconfig`; não validado contra APIs reais de cada SDK. |
 | Detecção de OS/arquitetura | PARTIAL | `KARPADiagnosticsReport` registra OS, versão, arquitetura via `uname` e bundle ID; ainda não foi executado em iOS. |
 | ESign/injeção/WhatsApp | NOT IMPLEMENTED | Não há fluxo de injeção; README expressamente limita o uso a alvo próprio/autorizado. |
-| DYLIB genuinamente compilada | NOT IMPLEMENTED | O ambiente não possui Xcode/iOS SDK; somente source foi entregue. |
+| DYLIB genuinamente compilada | PASS | Artifact do workflow 44623905776 contém Mach-O `MH_DYLIB` arm64 real; está sem assinatura de distribuição. |
 | Classes Objective-C | PASS | `objc_getClassList`, nome, superclass, metaclass, imagem, instance size e contagem. |
 | Métodos de instância/classe | PASS | Listas diretas; opção recursiva de herdados com campo `direct`. |
 | Encodings/IMP/imagem | PASS | Encoding bruto, IMP textual e `dladdr` quando resolvível. |
@@ -56,8 +56,8 @@ A entrega atual **não satisfaz integralmente** a especificação mestre e não 
 | Coverage/integrity | PARTIAL | Coverage inclui contagens e diagnóstico OS/arquitetura/bundle/status; faltam skipped/errors detalhados, duração, UUID principal e hashes. |
 | Arquitetura modular | PARTIAL | Alguns módulos existem, mas muitos componentes da arquitetura especificada faltam. |
 | Build scripts/configuração | PARTIAL | Há `.xcconfig` e README; não há projeto Xcode, script de build ou testes compiláveis neste ambiente. |
-| Testes reais | NOT IMPLEMENTED | Apenas verificação estática do source; não houve build ou execução em iOS. |
-| ZIP completo com exemplos | PARTIAL | Existe ZIP do source, mas não há projeto Xcode completo, DYLIB, exemplos de reports ou resultados de dispositivo. |
+| Testes reais | PARTIAL | Build, linkedição, `file`, `otool`, `nm` e conteúdo do ZIP passaram no macOS; XCTest e execução iOS não foram realizados. |
+| ZIP completo com exemplos | PASS/PARTIAL | Artifact contém projeto/build logs, `libKARPA.dylib` e ZIP de arm64; resultados de dispositivo não existem. |
 
 ## Problemas técnicos encontrados na revisão
 
@@ -70,14 +70,14 @@ A entrega atual **não satisfaz integralmente** a especificação mestre e não 
 
 ## Veredito
 
-A entrega atual deve ser rotulada como **source core + Xcode build pipeline — PARTIAL**. O projeto Xcode, script de validação e workflow macOS agora existem, mas a DYLIB compilada, a execução do workflow e os testes de dispositivo permanecem `NOT VERIFIED` até haver uma execução macOS/Xcode e um alvo autorizado.
+A entrega atual deve ser rotulada como **compiled iOS arm64 dylib + Xcode build pipeline — PARTIAL**. A compilação e validação Mach-O foram comprovadas no workflow 44623905776; assinatura, ESign e testes de dispositivo permanecem `NOT VERIFIED`.
 
 ## Final-build infrastructure
 
 | Item | Status | Evidence |
 |---|---|---|
-| `KARPA.xcodeproj` Dynamic Library target | CONFIGURED | Target `KARPA`, `mh_dylib`, Foundation/UIKit, all existing `.m` sources. |
-| macOS GitHub Actions workflow | CONFIGURED | `.github/workflows/ios-build.yml` builds arm64 and uploads artifacts. |
-| Mach-O validation | CONFIGURED | `validate_ios_binary.sh` checks file type, `MH_DYLIB`, arm64, dependencies and exports. |
-| Actual iOS `.dylib` | NOT VERIFIED | No macOS/Xcode runner has completed in this task yet. |
+| `KARPA.xcodeproj` Dynamic Library target | COMPILED | Target `KARPA`, `mh_dylib`, Foundation/UIKit/CoreGraphics, all existing `.m` sources. |
+| macOS GitHub Actions workflow | COMPILED | `.github/workflows/ios-build.yml` builds arm64 and uploads artifacts; run 44623905776 succeeded. |
+| Mach-O validation | PASS | `validate_ios_binary.sh` confirmed file type, `MH_DYLIB`, arm64, dependencies and exports. |
+| Actual iOS `.dylib` | COMPILED | Artifact `KARPA-iOS-arm64-f7ef6d62fe9b288dbde3418f394afc8f8148350f`; unsigned host-app artifact. |
 | ESign/device compatibility | NOT VERIFIED | Requires legitimate signing and authorized-device execution. |
