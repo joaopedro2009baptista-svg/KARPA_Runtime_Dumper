@@ -15,8 +15,9 @@ if [ ! -d "$ROOT/KARPA.xcodeproj" ]; then
 fi
 
 mkdir -p "$BUILD_DIR"
-xcodebuild -project "$ROOT/KARPA.xcodeproj" -scheme KARPA -configuration Release \
-  -sdk iphoneos -derivedDataPath "$DERIVED_DATA" ARCHS=arm64 ONLY_ACTIVE_ARCH=NO build \
+	xcodebuild -project "$ROOT/KARPA.xcodeproj" -scheme KARPA -configuration Release \
+	  -sdk iphoneos -derivedDataPath "$DERIVED_DATA" ARCHS=arm64 ONLY_ACTIVE_ARCH=NO \
+	  CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO build \
   | tee "$BUILD_DIR/xcodebuild.log"
 
 if [ ! -f "$PRODUCT" ]; then
