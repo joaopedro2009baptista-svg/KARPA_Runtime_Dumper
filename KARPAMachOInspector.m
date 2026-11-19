@@ -1,7 +1,6 @@
 #import "KARPAMachOInspector.h"
 #import <mach-o/dyld.h>
 #import <mach-o/loader.h>
-#import <mach-o/uuid.h>
 
 static NSString *KHex(uint64_t x){ return [NSString stringWithFormat:@"0x%llx",x]; }
 static NSString *KName(const char *p){ return p ? [NSString stringWithUTF8String:p] ?: @"<invalid-utf8>" : @"<null>"; }
