@@ -7,13 +7,11 @@ on:
 
 permissions:
   contents: read
-
-env:
-  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+  actions: write
 
 jobs:
   build-ios-dylib:
-    runs-on: macos-13
+    runs-on: macos-15
     timeout-minutes: 30
     steps:
       - name: Checkout
@@ -23,10 +21,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [ ! -d "$DEVELOPER_DIR" ]; then
-            export DEVELOPER_DIR="$(ls -d /Applications/Xcode*.app/Contents/Developer | sort -V | tail -1)"
+          if [ -d /Applications/Xcode.app/Contents/Developer ]; then
+            echo "DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer" >> "$GITHUB_ENV"
+          else
+            XCODE_PATH="$(find /Applications -maxdepth 1 -type d -name 'Xcode*.app' -print | sort -V | tail -1)"
+            test -n "$XCODE_PATH"
+            echo "DEVELOPER_DIR=$XCODE_PATH/Contents/Developer" >> "$GITHUB_ENV"
           fi
-          echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> "$GITHUB_ENV"
           xcodebuild -version
           xcode-select -p
 
@@ -46,7 +47,7 @@ jobs:
           unzip -l build/KARPA_iOS_arm64_artifacts.zip
 
       - name: Upload compiled dylib and logs
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: KARPA-iOS-arm64-${{ github.sha }}
           path: |
