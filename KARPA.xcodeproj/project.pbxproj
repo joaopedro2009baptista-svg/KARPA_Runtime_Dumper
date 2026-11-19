@@ -1,0 +1,89 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A00000000000000000000001 /* KARPACrossReference.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000001 /* KARPACrossReference.m */; };
+		A00000000000000000000002 /* KARPADiagnostics.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000002 /* KARPADiagnostics.m */; };
+		A00000000000000000000003 /* KARPAExampleUsage.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000003 /* KARPAExampleUsage.m */; };
+		A00000000000000000000004 /* KARPAExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000004 /* KARPAExporter.m */; };
+		A00000000000000000000005 /* KARPAHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000005 /* KARPAHistory.m */; };
+		A00000000000000000000006 /* KARPAImageMonitor.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000006 /* KARPAImageMonitor.m */; };
+		A00000000000000000000007 /* KARPAInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000007 /* KARPAInterface.m */; };
+		A00000000000000000000008 /* KARPAMachOInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000008 /* KARPAMachOInspector.m */; };
+		A00000000000000000000009 /* KARPAMediaInvestigator.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000009 /* KARPAMediaInvestigator.m */; };
+		A0000000000000000000000A /* KARPAObjectiveCInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000A /* KARPAObjectiveCInspector.m */; };
+		A0000000000000000000000B /* KARPASwiftInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000B /* KARPASwiftInspector.m */; };
+		A0000000000000000000000C /* KARPARuntimeDiff.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000C /* KARPARuntimeDiff.m */; };
+		A0000000000000000000000D /* KARPARuntimeDumper.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000D /* KARPARuntimeDumper.m */; };
+		A0000000000000000000000E /* KARPAStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000E /* KARPAStorage.m */; };
+		A0000000000000000000000F /* KARPATypeEncodingParser.m in Sources */ = {isa = PBXBuildFile; fileRef = B0000000000000000000000F /* KARPATypeEncodingParser.m */; };
+		A00000000000000000000010 /* KARPAZipExporter.m in Sources */ = {isa = PBXBuildFile; fileRef = B00000000000000000000010 /* KARPAZipExporter.m */; };
+		A00000000000000000000011 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00000000000000000000020 /* Foundation.framework */; };
+		A00000000000000000000012 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B00000000000000000000021 /* UIKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B00000000000000000000000 /* KARPA.framework */ = {isa = PBXFileReference; explicitFileType = compiled.mach-o.dylib; includeInIndex = 0; path = libKARPA.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		B00000000000000000000001 /* KARPACrossReference.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPACrossReference.m; sourceTree = "<group>"; };
+		B00000000000000000000002 /* KARPADiagnostics.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPADiagnostics.m; sourceTree = "<group>"; };
+		B00000000000000000000003 /* KARPAExampleUsage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAExampleUsage.m; sourceTree = "<group>"; };
+		B00000000000000000000004 /* KARPAExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAExporter.m; sourceTree = "<group>"; };
+		B00000000000000000000005 /* KARPAHistory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAHistory.m; sourceTree = "<group>"; };
+		B00000000000000000000006 /* KARPAImageMonitor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAImageMonitor.m; sourceTree = "<group>"; };
+		B00000000000000000000007 /* KARPAInterface.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAInterface.m; sourceTree = "<group>"; };
+		B00000000000000000000008 /* KARPAMachOInspector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAMachOInspector.m; sourceTree = "<group>"; };
+		B00000000000000000000009 /* KARPAMediaInvestigator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAMediaInvestigator.m; sourceTree = "<group>"; };
+		B0000000000000000000000A /* KARPAObjectiveCInspector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAObjectiveCInspector.m; sourceTree = "<group>"; };
+		B0000000000000000000000B /* KARPASwiftInspector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPASwiftInspector.m; sourceTree = "<group>"; };
+		B0000000000000000000000C /* KARPARuntimeDiff.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPARuntimeDiff.m; sourceTree = "<group>"; };
+		B0000000000000000000000D /* KARPARuntimeDumper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPARuntimeDumper.m; sourceTree = "<group>"; };
+		B0000000000000000000000E /* KARPAStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAStorage.m; sourceTree = "<group>"; };
+		B0000000000000000000000F /* KARPATypeEncodingParser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPATypeEncodingParser.m; sourceTree = "<group>"; };
+		B00000000000000000000010 /* KARPAZipExporter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KARPAZipExporter.m; sourceTree = "<group>"; };
+		B00000000000000000000020 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B00000000000000000000021 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B00000000000000000000030 /* KARPA.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = KARPA.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C00000000000000000000001 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000011,A00000000000000000000012,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D00000000000000000000000 = {isa = PBXGroup; children = (D00000000000000000000001,D00000000000000000000002,D00000000000000000000003,); sourceTree = "<group>"; };
+		D00000000000000000000001 /* KARPA */ = {isa = PBXGroup; children = (B00000000000000000000001,B00000000000000000000002,B00000000000000000000003,B00000000000000000000004,B00000000000000000000005,B00000000000000000000006,B00000000000000000000007,B00000000000000000000008,B00000000000000000000009,B0000000000000000000000A,B0000000000000000000000B,B0000000000000000000000C,B0000000000000000000000D,B0000000000000000000000E,B0000000000000000000000F,B00000000000000000000010,B00000000000000000000030,); path = .; sourceTree = "<group>"; };
+		D00000000000000000000002 /* Frameworks */ = {isa = PBXGroup; children = (B00000000000000000000020,B00000000000000000000021,); name = Frameworks; sourceTree = "<group>"; };
+		D00000000000000000000003 /* Products */ = {isa = PBXGroup; children = (B00000000000000000000000,); name = Products; sourceTree = "<group>"; };
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E00000000000000000000001 /* KARPA */ = {isa = PBXNativeTarget; buildConfigurationList = F00000000000000000000011; buildPhases = (C00000000000000000000002,C00000000000000000000001,); buildRules = (); dependencies = (); name = KARPA; productName = KARPA; productReference = B00000000000000000000000; productType = "com.apple.product-type.library.dynamic"; };
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E00000000000000000000000 /* Project object */ = {isa = PBXProject; attributes = {LastUpgradeCheck = 1600; ORGANIZATIONNAME = "KARPA Authorized Testing"; TargetAttributes = {E00000000000000000000001 = {CreatedOnToolsVersion = 16.0;};};}; buildConfigurationList = F00000000000000000000010; compatibilityVersion = "Xcode 3.2"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en,Base,); mainGroup = D00000000000000000000000; productRefGroup = D00000000000000000000003; projectDirPath = ""; projectRoot = ""; targets = (E00000000000000000000001,); };
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C00000000000000000000002 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (A00000000000000000000001,A00000000000000000000002,A00000000000000000000003,A00000000000000000000004,A00000000000000000000005,A00000000000000000000006,A00000000000000000000007,A00000000000000000000008,A00000000000000000000009,A0000000000000000000000A,A0000000000000000000000B,A0000000000000000000000C,A0000000000000000000000D,A0000000000000000000000E,A0000000000000000000000F,A00000000000000000000010,); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F00000000000000000000000 /* Debug */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; };
+		F00000000000000000000001 /* Release */ = {isa = XCBuildConfiguration; baseConfigurationReference = B00000000000000000000030; buildSettings = {PRODUCT_NAME = KARPA; GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)"; };
+		F00000000000000000000002 /* Project Debug */ = {isa = XCBuildConfiguration; buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 13.0; }; name = Debug; };
+		F00000000000000000000003 /* Project Release */ = {isa = XCBuildConfiguration; buildSettings = {SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 13.0; }; name = Release; };
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F00000000000000000000010 /* Build configuration list for PBXProject */ = {isa = XCConfigurationList; buildConfigurations = (F00000000000000000000000,F00000000000000000000001,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		F00000000000000000000011 /* Build configuration list for PBXNativeTarget */ = {isa = XCConfigurationList; buildConfigurations = (F00000000000000000000002,F00000000000000000000003,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = E00000000000000000000000 /* Project object */;
+}

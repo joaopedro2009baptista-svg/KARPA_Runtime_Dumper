@@ -45,3 +45,27 @@ Static source checks passed for the generated modules and integration references
 On macOS with an appropriate Xcode/iOS SDK, create or complete an Xcode Dynamic Library target, add every `.m` file, build for an authorized app-owned test target, inspect the resulting Mach-O with `file`, `otool -hv`, `otool -L` and symbol tools, then execute the XCTest/device procedures in `TEST_PLAN.md`. Only after those steps may `COMPILED`, `UNIT TESTED` or `DEVICE TESTED` be changed from `NOT VERIFIED`.
 
 No ESign compatibility claim is made. Any signing, loading or injection behavior depends on the authorized target, iOS version, code-signing state and the exact deployment workflow.
+
+## Infrastructure added in the final-build pass
+
+- `KARPA.xcodeproj/project.pbxproj`: target `KARPA` of type `com.apple.product-type.library.dynamic`, with `MACH_O_TYPE = mh_dylib`, Foundation, UIKit and all 16 existing `.m` files.
+- `KARPA.xcconfig`: Release arm64 build, iOS 13.0, ARC and install name `@rpath/libKARPA.dylib`.
+- `build_ios.sh`: deterministic macOS build, validation and packaging.
+- `validate_ios_binary.sh`: `file`, `otool -hv`, `otool -L`, `nm` and arm64/MH_DYLIB assertions.
+- `.github/workflows/ios-build.yml`: macOS runner, Release build, source-policy check and artifact upload.
+- `INSTALL_AND_ESIGN.md`: signing guidance for an owned/authorized target and ESign limitations.
+
+## Status of this revision
+
+| Item | Status | Evidence |
+|---|---|---|
+| Existing source preserved | SOURCE IMPLEMENTED | No functional module was removed; the project references every `.m` file. |
+| Complete Xcode project | CONFIGURED, NOT VERIFIED | `.xcodeproj` was added, but cannot be opened/validated on this Linux host. |
+| macOS workflow | CONFIGURED, NOT VERIFIED | Workflow is ready for a macOS runner after push. |
+| Local dylib compilation | NOT VERIFIED | `xcodebuild`, Xcode and iOS SDK are absent here. |
+| GitHub Actions compilation | NOT VERIFIED | Requires a successful macOS workflow run. |
+| Mach-O, architecture, dependencies and exports | NOT VERIFIED | `validate_ios_binary.sh` is ready but requires the compiled product. |
+| JSON/CSV/ZIP/cancellation on device | NOT VERIFIED | No XCTest/device is attached; collection remains synchronous. |
+| ESign | NOT VERIFIED | Requires signing and device validation in an authorized environment. |
+
+The remaining blocker for the primary objective is a successful macOS/Xcode target build followed by signing and loading validation on an authorized device. No `.dylib` is claimed or fabricated in this Linux execution.

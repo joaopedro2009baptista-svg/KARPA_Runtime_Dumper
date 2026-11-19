@@ -4,9 +4,9 @@ Biblioteca Objective-C para inspeção local e somente leitura do processo hospe
 
 ## Build no macOS/Xcode
 
-1. Crie um target **Dynamic Library** iOS em um projeto Xcode.
-2. Adicione todos os arquivos `.h` e `.m` deste diretório ao target.
-3. Defina `MACH_O_TYPE = mh_dylib`, `IPHONEOS_DEPLOYMENT_TARGET = 13.0` e `ARCHS = arm64 arm64e` conforme suporte do Xcode.
+1. Abra o `KARPA.xcodeproj` incluído e selecione o target **KARPA** (Dynamic Library iOS).
+2. O target já inclui todos os arquivos `.h` e `.m` deste diretório e links para Foundation e UIKit.
+3. O build padrão define `MACH_O_TYPE = mh_dylib`, `IPHONEOS_DEPLOYMENT_TARGET = 13.0` e `ARCHS = arm64`; `arm64e` pode ser adicionado somente quando suportado pelo SDK escolhido.
 4. Compile em um dispositivo e aplicativo de teste próprios/autorizados. A biblioteca não é um app e não deve ser assinada como um executável independente.
 5. Verifique o produto com `file`, `otool -hv`, `otool -L` e a assinatura do seu ambiente.
 
@@ -37,8 +37,12 @@ BOOL ok = KARPACollectToDirectory(o, o.outputDirectory, &error);
 - `collection_history.json`: histórico local append-only das coletas concluídas.
 - `KARPA_DUMPS.zip`: arquivo ZIP local dos relatórios gerados.
 
-Os módulos `KARPAImageMonitor`, `KARPAClassMonitor`, `KARPACrossReference`, `KARPASwiftInspector` e `KARPARuntimeDiff` fornecem, respectivamente, observação básica de add-image, snapshots periódicos de classes, índice reverso de selectors, identificação limitada de imagens Swift e comparação de dumps. Eles ainda são módulos de source e não foram compilados ou testados em dispositivo neste ambiente.
+Os módulos `KARPAImageMonitor`, `KARPAClassMonitor`, `KARPACrossReference`, `KARPASwiftInspector` e `KARPARuntimeDiff` fornecem, respectivamente, observação básica de add-image, snapshots periódicos de classes, índice reverso de selectors, identificação limitada de imagens Swift e comparação de dumps. A compilação e os testes devem ser confirmados pelo workflow macOS e por um dispositivo autorizado; este ambiente Linux não possui Xcode.
 
 ## Limitações
 
-APIs públicas não enumeram necessariamente categorias não registradas, metadata Swift completa, todos os símbolos ou todos os limites de função. O código marca cobertura e não transforma inferências em confirmações. Não há suporte declarado para injeção em aplicativos de terceiros, bypass de assinatura, jailbreak ou ESign; teste apenas em um alvo sob seu controle e de acordo com a autorização aplicável.
+APIs públicas não enumeram necessariamente categorias não registradas, metadata Swift completa, todos os símbolos ou todos os limites de função. O código marca cobertura e não transforma inferências em confirmações. Não há suporte declarado para injeção em aplicativos de terceiros, bypass de assinatura ou jailbreak; teste apenas em um alvo sob seu controle e de acordo com a autorização aplicável. A avaliação específica de assinatura e ESign está em `INSTALL_AND_ESIGN.md` e permanece não verificada sem teste real de dispositivo.
+
+## Build automatizado
+
+`build_ios.sh` compila a dylib, chama `validate_ios_binary.sh` para verificar tipo Mach-O, arquitetura, dependências e símbolos, e empacota os artefatos. O workflow `.github/workflows/ios-build.yml` executa o mesmo processo em macOS e publica `libKARPA.dylib`, logs e ZIP como artifact do GitHub Actions.

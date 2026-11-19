@@ -1,0 +1,59 @@
+name: iOS Dynamic Library Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+permissions:
+  contents: read
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_16.4.app/Contents/Developer
+
+jobs:
+  build-ios-dylib:
+    runs-on: macos-14
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Select available Xcode
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ ! -d "$DEVELOPER_DIR" ]; then
+            export DEVELOPER_DIR="$(ls -d /Applications/Xcode*.app/Contents/Developer | sort -V | tail -1)"
+          fi
+          echo "DEVELOPER_DIR=$DEVELOPER_DIR" >> "$GITHUB_ENV"
+          xcodebuild -version
+          xcode-select -p
+
+      - name: Build Release arm64 dylib
+        shell: bash
+        run: |
+          set -o pipefail
+          ./build_ios.sh 2>&1 | tee github-actions-build.log
+
+      - name: Verify source policy and artifact contents
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -RInE 'Watusi|MSHookFunction|Substrate|MobileSubstrate|swizzle|NSURLSession|CFNetwork' --include='*.h' --include='*.m' .
+          test -f build/DerivedData/Build/Products/Release-iphoneos/libKARPA.dylib
+          test -f build/KARPA_iOS_arm64_artifacts.zip
+          unzip -l build/KARPA_iOS_arm64_artifacts.zip
+
+      - name: Upload compiled dylib and logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: KARPA-iOS-arm64-${{ github.sha }}
+          path: |
+            build/artifacts/libKARPA.dylib
+            build/artifacts/xcodebuild.log
+            build/artifacts/binary_validation.log
+            build/KARPA_iOS_arm64_artifacts.zip
+            github-actions-build.log
+          if-no-files-found: error
+          retention-days: 14

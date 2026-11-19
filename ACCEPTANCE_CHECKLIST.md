@@ -70,4 +70,14 @@ A entrega atual **não satisfaz integralmente** a especificação mestre e não 
 
 ## Veredito
 
-A entrega atual deve ser rotulada como **prototype/source core — PARTIAL**, não como implementação completa do prompt. Ela atende parcialmente ao núcleo seguro de coleta runtime e exportação local, mas não atende aos critérios de DYLIB compilada, produção, monitoramento, diff, análise binária avançada, UI e pacote de entrega completo.
+A entrega atual deve ser rotulada como **source core + Xcode build pipeline — PARTIAL**. O projeto Xcode, script de validação e workflow macOS agora existem, mas a DYLIB compilada, a execução do workflow e os testes de dispositivo permanecem `NOT VERIFIED` até haver uma execução macOS/Xcode e um alvo autorizado.
+
+## Final-build infrastructure
+
+| Item | Status | Evidence |
+|---|---|---|
+| `KARPA.xcodeproj` Dynamic Library target | CONFIGURED | Target `KARPA`, `mh_dylib`, Foundation/UIKit, all existing `.m` sources. |
+| macOS GitHub Actions workflow | CONFIGURED | `.github/workflows/ios-build.yml` builds arm64 and uploads artifacts. |
+| Mach-O validation | CONFIGURED | `validate_ios_binary.sh` checks file type, `MH_DYLIB`, arm64, dependencies and exports. |
+| Actual iOS `.dylib` | NOT VERIFIED | No macOS/Xcode runner has completed in this task yet. |
+| ESign/device compatibility | NOT VERIFIED | Requires legitimate signing and authorized-device execution. |
